@@ -1,26 +1,15 @@
 Named Entity Recognition with Small Strongly Labeled and Large Weakly
 Labeled Data
 
+In this roject we have implemented Named Entity Recognition task of Pubmed data which is created and updated by government every year.At first we have calcualted the F1 score,Precision and Recall on the baseline model such as Bio-Bert,Bert-CRF,PubmedBert and then we have created our model from scratch.
+
 We provide a three stage framework:
 
-Stage I: Domain continual pre-training; Stage II: Noise-aware weakly
-supervised pre-training; Stage III: Fine-tuning. In this code base, we
-actually provide basic building blocks which allow arbitrary combination
-of different stages. We also provide examples scripts for reproducing
-our results in BioMedical NER.
+Stage I: Domain continual pre-training
+In this stage we trianed Bert model using the unlabeled data and saved the model for the furthur stages.
 
-Performance Benchmark
+Stage II: Noise-aware weakly supervised pre-training
+In this stage firstly we have pre processed the data to convert unlabeled data into weakly labeled indomain data.Then we train the model from previous stage on the strongly labeled data to convert in-domain Bert into Bert-CRF model.Then we din noise aware continual pre-training on the weakly labeled data based on the confidence estimation adn plotted the graph for it.Finally the model is saved for the next satge.
 
-BioMedical NER
-
-Method (F1) BC5CDR-chem BC5CDR-disease NCBI-disease BERT 89.99 79.92
-85.87 bioBERT 92.85 84.70 89.13 PubMedBERT 93.33 85.62 87.82 NEEDLE
-91.38 82.57 88.53
-
-Links for models:
-
-https://iiitaphyd-my.sharepoint.com/:u:/g/personal/soham_ghosh_students_iiit_ac_in/ERPpcU9yJ8BNhfXF973eYtcBHwkugck3mIu1QsKANJJk7g?e=lX3bil
-
-https://iiitaphyd-my.sharepoint.com/:u:/g/personal/soham_ghosh_students_iiit_ac_in/EfQcFANs60BJrzE5ariSaFIBkNERbKfIV7_WsRfbTevqig?e=9lr1sg
-
-https://iiitaphyd-my.sharepoint.com/:u:/g/personal/soham_ghosh_students_iiit_ac_in/ESzhjTidVPxLk_GWQ-slMO8BpojVsJN8T0X_e3Q-ZbHQGA?e=J3aui0
+Stage III: Fine-tuning
+In the final stage we fine tune the data by combining the strongly labeled data and weakly labeled data and training the model on it.
